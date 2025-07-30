@@ -3,19 +3,19 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
-keywords:
-author: John Doe
-language: en
+title: Zhang's Blog
+subtitle: '这是网站副标题'
+description: '博客网站描述'
+keywords: 网站关键词
+author: Zhang
+language: zh-CN
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://zhang137-on.github.io/MyBlog
 root: /MyBlog/
-permalink: :year/:month/:day/:title/
+permalink: posts/:hash.html
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -105,3 +105,9 @@ deploy:
   type: git
   repo: https://github.com/Zhang137-on/MyBlog.git
   branch: gh-pages
+# 搜索页配置
+search:
+  path: search.xml
+  field: all # post:文章范围、page:页面范围、all:覆盖所有
+  content: true # 内容是否包含每一篇文章的全部内容
+  template:  # ./search.xml 指定定制的XML模板
