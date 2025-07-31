@@ -1,50 +1,98 @@
+#name: Deploy Hexo to GitHub Pages
+#
+#on:
+#  push:
+#    branches:
+#      - master  # 当推送到 main 分支时触发
+#
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout repository
+#        uses: actions/checkout@v2
+#        with:
+#          submodules: false  # 禁用子模块检查
+#
+#      - name: Setup Node.js
+#        uses: actions/setup-node@v2
+#        with:
+#          node-version: '20'
+#
+#      - name: Install Dependencies
+#        run: npm install
+#
+#      - name: Install Hexo Git Deployer
+#        run: |
+#          npm install hexo-deployer-git --save
+#          npm install hexo-cli -g
+#
+#      - name: Clean and Generate Static Files
+#        run: |
+#          hexo clean
+#          hexo generate
+#
+#      - name: Configure Git
+#        run: |
+#          git config --global user.name 'github-actions[bot]'
+#          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+#
+#      - name: Deploy to GitHub Pages
+#        env:
+#          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+#        run: |
+#          cd public/
+#          git init
+#          git add -A
+#          git commit -m "Create by workflows"
+#          git remote add origin https://${{ secrets.GH_TOKEN }}@github.com/Zhang137-on/MyBlog.git
+#          git push origin HEAD:gh-pages -f
 name: Deploy Hexo to GitHub Pages
 
 on:
   push:
     branches:
-      - master  # 当推送到 main 分支时触发
+      - master  # 当推送到 master 分支时触发
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
-          submodules: false  # 禁用子模块检查
+          submodules: false
+          fetch-depth: 0  # 获取完整历史记录
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '20'
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Install Hexo Git Deployer
-        run: |
-          npm install hexo-deployer-git --save
-          npm install hexo-cli -g
-
-      - name: Clean and Generate Static Files
-        run: |
-          hexo clean
-          hexo generate
-
-      - name: Configure Git
+      - name: Setup Git Identity
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-      - name: Deploy to GitHub Pages
+      - name: Push Public to gh-pages
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 使用内置token更安全
         run: |
-          cd public/
-          git init
+          # 检查public目录是否存在
+          if [ ! -d "public" ]; then
+            echo "Error: public directory not found!"
+            echo "Please run 'hexo generate' locally first."
+            exit 1
+          fi
+
+          # 创建或重置gh-pages分支
+          git checkout --orphan gh-pages
+          git reset --hard
+          
+          # 复制public内容到根目录
+          cp -r public/* .
+          
+          # 添加必要的.nojekyll文件（如果使用非Jekyll站点）
+          touch .nojekyll
+          
+          # 提交并强制推送
           git add -A
-          git commit -m "Create by workflows"
-          git remote add origin https://${{ secrets.GH_TOKEN }}@github.com/Zhang137-on/MyBlog.git
-          git push origin HEAD:gh-pages -f
+          git commit -m "Deploy static files from public/ [ci skip]"
+          git push origin gh-pages --force
