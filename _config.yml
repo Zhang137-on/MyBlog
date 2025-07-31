@@ -13,8 +13,12 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
+# 上传路径
 url: https://zhang137-on.github.io/MyBlog
 root: /MyBlog/
+## 本地测试路径
+#url: http://localhost:4000  # 本地测试用
+#root: /                     # 确保是根目录
 permalink: posts/:hash.html
 permalink_defaults:
 pretty_urls:
@@ -111,3 +115,24 @@ search:
   field: all # post:文章范围、page:页面范围、all:覆盖所有
   content: true # 内容是否包含每一篇文章的全部内容
   template:  # ./search.xml 指定定制的XML模板
+
+#双栏美化
+butterfly_article_double_row:
+  enable: true
+
+# 轮播图组件
+# 注意：现在我们想要使文章进行轮播，那么现在我们需要在文章的写作时，在front_matter中添加swiper_index，数值越大，越首先进行出现
+swiper:
+  enable: true # 开关
+  priority: 5 # 过滤器优先权
+  enable_page: all # 应用页面
+  timemode: date # date/updated
+  layout: # 挂载容器类型
+    type: id
+    name: recent-posts
+    index: 0
+  default_descr:
+  swiper_css: /css/swiper.min.css
+  swiper_js: /js/swiper.min.js
+  custom_css: /css/swiperstyle.css
+  custom_js: /js/swiper_init.js
