@@ -92,13 +92,13 @@ cover:
   position: both
   # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
   default_cover:
-    - /img/index01.jpg
-    - /img/index02.jpg
-    - /img/index03.jpg
-    - /img/index04.jpg
-    - /img/index05.jpg
-    - /img/index06.jpg
-    - /img/index09.jpg
+    - /MyBlog/img/index01.jpg
+    - /MyBlog/img/index02.jpg
+    - /MyBlog/img/index03.jpg
+    - /MyBlog/img/index04.jpg
+    - /MyBlog/img/index05.jpg
+    - /MyBlog/img/index06.jpg
+    - /MyBlog/img/index09.jpg
 
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
@@ -922,20 +922,20 @@ css_prefix: true
 # 插入代码到头部 </head> 之前 和 底部 </body> 之前
 inject:
   head:
-    - <link rel="stylesheet" href="/css/myStyle.css">
-    - <link rel="stylesheet" href="/css/myFront.css">
-    - <link rel="stylesheet" href="/css/mouse.css">
-    - <link rel="stylesheet" href="/css/headIndex.css">
-    - <link rel="stylesheet" href="/css/headlink.css">
-    - <link rel="stylesheet" href="/css/fengche.css">
+    - <link rel="stylesheet" href="/MyBlog/css/myStyle.css">
+    - <link rel="stylesheet" href="/MyBlog/css/myFront.css">
+    - <link rel="stylesheet" href="/MyBlog/css/mouse.css">
+    - <link rel="stylesheet" href="/MyBlog/css/headIndex.css">
+    - <link rel="stylesheet" href="/MyBlog/css/headlink.css">
+    - <link rel="stylesheet" href="/MyBlog/css/fengche.css">
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
 
 
   # - <link rel="stylesheet" href="/xxx.css">
   bottom:
-    - <script src="/js/jquery.js"></script>
-    - <script src="/js/foot.js"></script>
-    - <script src="/js/nav.js"></script>
+    - <script src="/MyBlog/js/jquery.js"></script>
+    - <script src="/MyBlog/js/foot.js"></script>
+    - <script src="/MyBlog/js/nav.js"></script>
     - <script src="http://cdn.bootcss.com/pace/1.0.2/pace.min.js" async></script>
 
   # - <script src="xxxx"></script>
