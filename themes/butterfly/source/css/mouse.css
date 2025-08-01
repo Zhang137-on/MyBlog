@@ -1,0 +1,36 @@
+/* 默认指针 */
+body,
+html,
+* {
+    cursor: url('../mouse/Normal.cur'), auto !important;
+}
+
+/* 链接悬停时（手指样式） */
+a:hover,
+button:hover,
+[onclick]:hover {
+    cursor: url('../mouse/Normal.cur'), pointer !important;
+}
+/* 点击时（按下鼠标时的样式） */
+a:active,
+button:active,
+[onclick]:active {
+    cursor: url('../mouse/Normal.cur'), pointer !important;
+}
+
+/* 输入框/可编辑区域（文本输入样式） */
+input,
+textarea,
+[contenteditable] {
+    cursor: url('../mouse/TextSelectionBordered.cur'), text !important;
+}
+
+/* 禁用状态 */
+[disabled] {
+    cursor: url('../mouse/No.cur'), not-allowed !important;
+}
+
+/* 拖拽操作 */
+[draggable="true"] {
+    cursor: url('../mouse/Move.cur'), move !important;
+}
